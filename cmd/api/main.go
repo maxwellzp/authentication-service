@@ -32,6 +32,7 @@ func main() {
 		log.Panic("Can't connect to Postgres!")
 	}
 
+	// set up config
 	app := Config{
 		DB:     conn,
 		Models: data.New(conn),
@@ -58,6 +59,7 @@ func openDB(dsn string) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return db, nil
 }
 
@@ -79,7 +81,7 @@ func connectToDB() *sql.DB {
 			return nil
 		}
 
-		log.Println("Backing off for two seconds...")
+		log.Println("Backing off for two seconds....")
 		time.Sleep(2 * time.Second)
 		continue
 	}
